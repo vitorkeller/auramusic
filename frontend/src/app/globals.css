@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+:root {
+	--background: #ffffff;
+	--foreground: #171717;
+}
+
+@theme inline {
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--background: black;
+		--foreground: #ededed;
+	}
+}
+
+body {
+	background-color: var(--background);
+	color: var(--foreground);
+	font-family: Quicksand, sans-serif;
+	background-image: url('/img/page-top-bg.jpg'), url('/img/page-bottom-bg.jpg');
+	background-repeat: no-repeat;
+	background-position: top center, bottom center;
+	background-size: 100% auto;
+	background-attachment: fixed;
+	min-height: 100dvh;
+	margin: 0;
+	padding: 0;
+}
