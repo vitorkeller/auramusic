@@ -3,10 +3,16 @@
 import { Home, Library, Heart, LogOut, UserCircle2 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const router = useRouter();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    router.push("/login");
+  };
 
   return (
     <aside className="w-24 h-full flex flex-col items-center pt-8 pb-10 z-50">
@@ -19,17 +25,21 @@ export default function Sidebar() {
           
           <nav className="bg-[#121212]/80 backdrop-blur-xl border border-white/5 rounded-[40px] py-6 px-2 flex flex-col gap-6 items-center shadow-2xl">
              <NavItem href="/" icon={<Home size={22} />} active={pathname === "/"} />
-             <NavItem icon={<Library size={22} />} active={pathname === "/library"} />
-             <NavItem icon={<Heart size={22} />} active={pathname === "/favorites"} />
+             <NavItem href="/playlists" icon={<Library size={22} />} active={pathname === "/playlists"} />
+             <NavItem href="/favorites" icon={<Heart size={22} />} active={pathname === "/favorites"} />
           </nav>
 
           <div className="bg-[#121212]/80 backdrop-blur-xl border border-white/5 rounded-[40px] py-6 px-2 flex flex-col gap-6 items-center shadow-2xl">
-             <NavItem href="/login" icon={<UserCircle2 size={24} />} active={pathname === "/login"} />
-             <NavItem icon={<LogOut size={24} />} />
+             <NavItem href="/profile" icon={<UserCircle2 size={24} />} active={pathname === "/profile"} />
+             
+             <button 
+                onClick={handleLogout}
+                className="w-12 h-12 flex items-center justify-center rounded-full transition-all duration-300 text-gray-400 hover:bg-white/5 hover:text-white"
+             >
+                <LogOut size={24} />
+             </button>
           </div>
-
       </div>
-
     </aside>
   );
 }

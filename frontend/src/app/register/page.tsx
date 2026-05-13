@@ -40,6 +40,7 @@ export default function Register() {
 			localStorage.setItem("token", data.token);
 			localStorage.setItem("userRole", data.role);
 			localStorage.setItem("username", data.username);
+			
 
 			window.location.href = "/login";
 

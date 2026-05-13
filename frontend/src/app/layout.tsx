@@ -1,3 +1,4 @@
+// app/layout.tsx
 "use client";
 
 import { Quicksand } from "next/font/google";
@@ -6,6 +7,7 @@ import "./globals.css";
 import AuthProvider from "../components/AuthProvider";
 import Sidebar from "../components/Sidebar";
 import Player from "../components/Player";
+import { PlayerProvider } from "../contexts/PlayerContext";
 
 const quicksand = Quicksand({
   variable: "--font-quicksand",
@@ -36,13 +38,15 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body className={`${quicksand.variable} font-sans antialiased overflow-hidden`}>
         <AuthProvider>
-          <div className="flex h-screen w-full bg-black/20">
-            <Sidebar />
-            <main className="flex-1 overflow-y-auto relative pb-32">
-              {children}
-            </main>
-          </div>
-          <Player />
+          <PlayerProvider>
+            <div className="flex h-screen w-full bg-black/20">
+              <Sidebar />
+              <main className="flex-1 overflow-y-auto relative pb-32">
+                {children}
+              </main>
+            </div>
+            <Player />
+          </PlayerProvider>
         </AuthProvider>
       </body>
     </html>
