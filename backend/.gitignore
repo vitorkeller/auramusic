@@ -219,9 +219,6 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-# Tests
-tests/
-
 # Documentos e rotas
 docs/
 rotas.txt
