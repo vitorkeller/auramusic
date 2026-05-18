@@ -9,6 +9,7 @@ export type Track = {
   album: string;
   duration: string;
   cover: string;
+  file_url: string;
 };
 
 type PlayerContextData = {
